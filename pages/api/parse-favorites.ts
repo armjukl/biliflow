@@ -184,7 +184,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     console.log(`开始获取收藏夹第${pageNum}页，每页${pageSizeNum}条...`);
     
     // 1. 获取当前页的BV号
-    const { bvids, hasMore, totalItems } = await getPlaylistBVIds(mediaId, pageNum, pageSizeNum);
+    const { bvids, hasMore, totalItems } = await getPlaylistBVIds(mediaIdString, pageNum, pageSizeNum);
     
     if (bvids.length === 0) {
       return res.status(200).json({
