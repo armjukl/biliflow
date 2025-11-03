@@ -588,7 +588,7 @@ export default function VideoPlayer() {
             <div style={{
               padding: '10px',
               backgroundColor: '#e6f7ff',
-              border: '1px solid '#b3e0ff',
+              border: '1px solid #b3e0ff',
               borderRadius: '6px',
               marginBottom: '20px',
               textAlign: 'center',
