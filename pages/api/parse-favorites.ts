@@ -147,7 +147,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   // ... 其他代码保持不变
 
   try {
-    const { page = '1', pageSize = '10', mediaId = '3399027968' } = req.query;
+  /*  const { page = '1', pageSize = '10', mediaId = '3399027968' } = req.query;
     
     // 使用传入的 mediaId 或默认值
     const finalMediaId = mediaId as string;
@@ -157,6 +157,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 //  
     const pageNum = parseInt(page as string);
     const pageSizeNum = parseInt(pageSize as string);
+    */
+// 修复：安全地从 query 中提取参数，并处理数组情况
+    const { page = '1', pageSize = '10', mediaId } = req.query;
+    
+    // 处理 mediaId：如果是数组则取第一个元素，否则使用传入值或默认值
+    const mediaIdString = Array.isArray(mediaId) ? mediaId[0] : (mediaId || '3399027968');
+    const pageNum = parseInt(Array.isArray(page) ? page[0] : page);
+    const pageSizeNum = parseInt(Array.isArray(pageSize) ? pageSize[0] : pageSize);
     
     if (pageNum < 1 || pageSizeNum < 1 || pageSizeNum > 20) {
       return res.status(400).json({
